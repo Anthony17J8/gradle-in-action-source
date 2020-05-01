@@ -4,11 +4,16 @@ import com.ico.ltd.todo.model.ToDoItem;
 import com.ico.ltd.todo.repository.InMemoryToDoRepository;
 import com.ico.ltd.todo.repository.ToDoRepository;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Collection;
 
-public class CommandLineInputHandler {
+public class CommandLineInputHandler implements AutoCloseable {
 
     private final ToDoRepository toDoRepository = new InMemoryToDoRepository();
+
+    private final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
     public void printOptions() {
         System.out.println("\n--- To Do Application ---");
@@ -22,7 +27,11 @@ public class CommandLineInputHandler {
     }
 
     public String readInput() {
-        return System.console().readLine("> ");
+        try {
+            return bufferedReader.readLine();
+        }catch (IOException exc) {
+            return "";
+        }
     }
 
     public void processInput(CommandLineInput input) {
@@ -128,5 +137,10 @@ public class CommandLineInputHandler {
 
     private void handleUnknownInput() {
         System.out.println("Please select a valid option!");
+    }
+
+    @Override
+    public void close() throws Exception {
+
     }
 }

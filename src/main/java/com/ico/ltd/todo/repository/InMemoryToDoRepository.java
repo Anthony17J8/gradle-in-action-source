@@ -29,7 +29,7 @@ public class InMemoryToDoRepository implements ToDoRepository {
 
     @Override
     public Long insert(ToDoItem toDoItem) {
-        var id = currentId.incrementAndGet();
+        Long id = currentId.incrementAndGet();
         toDoItem.setId(id);
         toDos.putIfAbsent(id, toDoItem);
         return id;

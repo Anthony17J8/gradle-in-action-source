@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum CommandLineInput {
     FIND_ALL('a'), FIND_BY_ID('f'), DELETE('d'),
-    INSERT('I'), UPDATE('u'), EXIT('e');
+    INSERT('i'), UPDATE('u'), EXIT('e');
 
     private static final Map<Character, CommandLineInput> INPUTS;
 
