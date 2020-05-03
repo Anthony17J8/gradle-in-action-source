@@ -1,20 +1,18 @@
-apply plugin: 'java'
+plugins {
+    id 'war'
+    id "org.gretty" version "3.0.2"
+}
 
-version = 0.1
 java {
     sourceCompatibility = JavaVersion.VERSION_11
 }
 
-jar {
-    manifest {
-        attributes 'Main-Class': 'com.ico.ltd.todo.ToDoApp'
-    }
-}
-
 repositories {
-    mavenCentral()
+    jcenter()
 }
 
 dependencies {
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
     implementation 'org.apache.commons:commons-lang3:3.1'
+    runtimeOnly 'jstl:jstl:1.2'
 }
